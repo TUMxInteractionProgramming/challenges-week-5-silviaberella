@@ -139,8 +139,10 @@ function createMessageElement(messageObject) {
         '<strong>' + messageObject.createdBy + '</strong></a>' +
         messageObject.createdOn.toLocaleString() +
         '<em>' + expiresIn+ ' min. left</em></h3>' +
-        '<p>' + messageObject.text + '</p>' +
-        '<button>+5 min.</button>' +
+
+        //Add new shadow of 2px for messages paragraph
+        '<p text-shadow:2dp>' + messageObject.text + '</p>' +
+        '<button class="accented" >+5 min.</button>' +
         '</div>';
 }
 
