@@ -305,6 +305,14 @@ button.accented{
 .message p {
     background-color: white;
     padding: 16px;
+/* Add new shadow of 2px for messages paragraph */
+   text-shadow:2dp;
+}
+
+
+/* New: Remove border of new abort button in right app bar*/
+#abortButton{
+    border:none;
 }
 
 /* adding pseudo element for message paragrph */
@@ -435,6 +443,7 @@ button.accented{
     0px 24px 38px 3px rgba(0, 0, 0, 0.14),
     0px 9px 46px 8px rgba(0, 0, 0, 0.12); 
 }
+
 
 
 /* Style definition for new button to be added to the bottom of the channel list */

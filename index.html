@@ -25,12 +25,15 @@
     <!-- embed external JavaScript file for app interaction -->
     <script src="js/script.js"></script>
 
-    
-
+    <!-- Embed emojis-list.js from Kikobeats (see GitHub)-->
+    <script src="js/emojis-list.js" type="text/javascript" charset="utf-8"></script>
+     <script>
+            var emojis = require('emojis-list');
+    </script>
   </head>
 
 <!-- #8 #channel #onload all channels when the body has loaded -->
-<body onload="listChannels()">
+<body onload="listChannels('New')">
 
 <!-- channel area -->
 <!-- Add shadow class below for channels view-->
@@ -98,23 +101,28 @@
 
     <!-- Add new button for adding channels with default value for FAB buttons-->
     <div>
-        <span class="md-whiteframe-6dp" id="dot">+</span>
+        <span class="md-whiteframe-6dp" id="dot" onclick="createChannels()">+</span>
     </div>
 
     <!-- TAB BAR -->
     <!-- Add shadow class below for tab bar-->
     <div class="md-whiteframe-6dp" id="tab-bar">
-        <button class="selected" id="tab-new" onclick="selectTab('#tab-new')">
+        <!-- <button class="selected" id="tab-new" onclick="selectTab('#tab-new')" onclick="listChannels('New')"> -->
+        <button class="selected" id="tab-new" onclick="listChannels('New')"> 
+        <!--  <button onclick="listChannels('New')" class="selected" id="tab-new" > -->
             <!-- #7  replacing icons -->
             <i class="far fa-lightbulb"></i>
             New
         </button>
-        <button id="tab-trending" onclick="selectTab('#tab-trending')">
+        <!-- <button id="tab-trending" onclick="selectTab('#tab-trending')" onclick="listChannels('Trending')"> -->
+        <button id="tab-trending" onclick="listChannels('Trending')"> 
+        <!-- <button onclick="listChannels('Trending')" id="tab-trending" > -->
             <!-- #7  replacing icons -->
             <i class="fas fa-fire"></i>
             Trending
         </button>
-        <button id="tab-favorites" onclick="selectTab('#tab-favorites')">
+        <!-- <button id="tab-favorites" onclick="selectTab('#tab-favorites')" onclick="listChannels('Favorites')"> -->
+        <button id="tab-favorites" onclick="listChannels('Favorites')">
             <!-- #7  replacing icons -->
             <i class="fas fa-star"></i>
             Favorites
@@ -126,85 +134,87 @@
 
     <!-- APP BAR for CHANNEL TITLE -->
     <!-- Add shadow class below for right app bar-->
-    <h1 class="md-whiteframe-4dp">
+    <h1 id = "appbar" class="md-whiteframe-4dp">
         <span id="channel-name">#SevenContinents</span>
         <small id="channel-location">by <strong>cheeses.yard.applies</strong></small>
         <!-- #7 star is now font-awesome -->
         <i class="fas fa-star" onclick="star()"></i>
     </h1>
 
-    <div id="messages">
+    
+    <!-- New requirement: Remove all static messagesin html file -->
+    <div id="messages">                                                         
 
-        <div class="message own">
-            <h3><a href="http://w3w.co/cheeses.yard.applies" target="_blank"><strong>cheeses.yard.applies</strong></a>
-                Wed, June 20th, 13:37 <em>15 min. left</em></h3>
+    <!--   <div class="message own">                                                   -->
+    <!--     <h3><a href="http://w3w.co/cheeses.yard.applies" target="_blank"><strong>cheeses.yard.applies</strong></a>  -->
+    <!--            Wed, June 20th, 13:37 <em>15 min. left</em></h3>                  -->
 
-            <!-- Add new shadow of 2px for messages paragraph -->
-            <p text-shadow:2dp>What's the place you folks call home?</p>
-
-            <!-- Application of new template for accented buttons on ttl button -->
-            <button class="accented">+5 min.</button>
-        </div>
-
-        <div class="message">
-            <h3><a href="http://w3w.co/truck.cotton.zone" target="_blank"><strong>truck.cotton.zone</strong></a>
-                Wed, June 20th, 13:39 <em>4 min. left</em></h3>
-
-            <!-- Add new shadow of 2px for messages paragraph -->
-            <p text-shadow:2dp>BRISBANE! Hang loose!</p>
+             <!-- Add new shadow of 2px for messages paragraph -->
+    <!--     <p text-shadow:2dp>What's the place you folks call home?</p>              -->
 
             <!-- Application of new template for accented buttons on ttl button -->
-            <button class="accented">+5 min.</button>
-        </div>
+    <!--    <button class="accented">+5 min.</button>                                  -->
+    <!--    </div>   -->
 
-        <div class="message">
-            <h3><a href="http://w3w.co/thus.best.dishes" target="_blank"><strong>thus.best.dishes</strong></a>
-                Wed, June 20th, 14:02 <em>12 min. left</em></h3>
-
-            <!-- Add new shadow of 2px for messages paragraph -->
-            <p text-shadow:2dp>The big apple.</p>
-
-            <!-- Application of new template for accented buttons on ttl button -->
-            <button class="accented">+5 min.</button>
-        </div>
-
-        <div class="message">
-            <h3><a href="http://w3w.co/driveway.helper.magazine"
-                   target="_blank"><strong>driveway.helper.magazine</strong></a>
-                Wed, June 20th, 14:02 <em>7 min. left</em></h3>
+    <!--   <div class="message"> -->
+    <!--        <h3><a href="http://w3w.co/truck.cotton.zone" target="_blank"><strong>truck.cotton.zone</strong></a> -->
+    <!--              Wed, June 20th, 13:39 <em>4 min. left</em></h3>                                                -->
 
             <!-- Add new shadow of 2px for messages paragraph -->
-            <p text-shadow:2d>Eu sou um Cariocas.</p>
+    <!--    <p text-shadow:2dp>BRISBANE! Hang loose!</p>                                                             -->
 
             <!-- Application of new template for accented buttons on ttl button -->
-            <button class="accented">+5 min.</button>
-        </div>
+    <!--    <button class="accented">+5 min.</button>                                                                -->
+    <!--    </div>                                                                                                   -->
 
-        <div class="message">
-            <h3><a href="http://w3w.co/escapes.pitch.saucepan"
-                   target="_blank"><strong>escapes.pitch.saucepan</strong></a>
-                Wed, June 20th, 14:07 <em>14 min. left</em></h3>
+    <!--    <div class="message">                                                                                    -->
+    <!--       <h3><a href="http://w3w.co/thus.best.dishes" target="_blank"><strong>thus.best.dishes</strong></a>    -->
+    <!--       Wed, June 20th, 14:02 <em>12 min. left</em></h3>                                                      -->
 
             <!-- Add new shadow of 2px for messages paragraph -->
-            <p text-shadow:2dp>Greetings from the western cape!</p>
+    <!--    <p text-shadow:2dp>The big apple.</p>                                                                    -->
 
-            <!-- Application of new template for accented buttons on ttl button -->
-            <button class="accented">+5 min.</button>
-        </div>
+             <!-- Application of new template for accented buttons on ttl button -->
+     <!--   <button class="accented">+5 min.</button>                                                                         -->
+     <!--   </div>                                                                                                            -->
 
-        <div class="message">
-            <h3><a href="http://w3w.co/meanings.identity.pays"
-                   target="_blank"><strong>meanings.identity.pays</strong></a>
-                Wed, June 20th, 04:08 <em>15 min. left</em></h3>
+     <!--   <div class="message">                                                                   -->
+     <!--      <h3><a href="http://w3w.co/driveway.helper.magazine"                                 -->
+     <!--          target="_blank"><strong>driveway.helper.magazine</strong></a>                    -->
+     <!--          Wed, June 20th, 14:02 <em>7 min. left</em></h3>                                  -->
 
             <!-- Add new shadow of 2px for messages paragraph -->
-            <p text-shadow:2dp>北京</p>
+     <!--       <p text-shadow:2d>Eu sou um Cariocas.</p>                                           -->
 
             <!-- Application of new template for accented buttons on ttl button -->
-            <button class="accented">+5 min.</button>
-        </div>
+     <!--      <button class="accented">+5 min.</button>                                            -->
+     <!--   </div>                                                                                  -->
 
-    </div>
+     <!--   <div class="message">                                                                   -->
+     <!--   <h3><a href="http://w3w.co/escapes.pitch.saucepan"                                      -->
+     <!--         target="_blank"><strong>escapes.pitch.saucepan</strong></a>                       -->
+     <!--         Wed, June 20th, 14:07 <em>14 min. left</em></h3>                                  -->
+
+            <!-- Add new shadow of 2px for messages paragraph -->
+     <!--     <p text-shadow:2dp>Greetings from the western cape!</p>                               -->
+
+            <!-- Application of new template for accented buttons on ttl button -->
+     <!--     <button class="accented">+5 min.</button>                                             -->
+     <!--  </div>                                                                                   -->
+
+     <!--   <div class="message">                                                                   -->
+     <!--      <h3><a href="http://w3w.co/meanings.identity.pays"                                   -->
+     <!--      target="_blank"><strong>meanings.identity.pays</strong></a>                          -->
+     <!--      Wed, June 20th, 04:08 <em>15 min. left</em></h3>                                     -->
+
+            <!-- Add new shadow of 2px for messages paragraph                                       -->
+     <!--   <p text-shadow:2dp>北京</p>                                                             -->
+
+            <!-- Application of new template for accented buttons on ttl button                     -->
+     <!--   <button class="accented">+5 min.</button>                                               -->
+     <!-- </div>                                                                                    -->                                                                              
+
+    </div>                                                                                    
 
     <!-- Chat BAR -->
     <!-- Add shadow class below for chat bar -->
@@ -217,14 +227,18 @@
         </button>
 
         <!-- Add shadow class below for emojis menu -->
-        <div class="md-whiteframe-24dp" id="emojis">&#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F606; &#x1F607;</div>
+        <div class="md-whiteframe-24dp" id="emojis" >&#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F606; &#x1F607;</div>
+        <!-- <div class="md-whiteframe-24dp" id="emojis">&#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F606; &#x1F607;</div> -->
+        <!-- <div class="md-whiteframe-24dp" id="emojis"></div> -->
+        <!-- <div class="md-whiteframe-24dp" id="emojis">smileys[0]</div> -->
+        
         <!-- #8 create a new input element which accepts text and has a prefill as well as a character limit.
                It also gets an id -->
         <input type="text" placeholder="Message..." maxlength="140" id="message">
         <!-- #8 send message requires a button -->
 
         <!-- Application of new template for accented buttons on sendMessage - button -->
-        <button class="accented" onclick="sendMessage()"><i class="fas fa-arrow-right"></i></button>
+        <button class="accented" id="sendButton" onclick="sendMessage()"><i class="fas fa-arrow-right"></i></button>
     </div>
 </div>
 
